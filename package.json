@@ -4,6 +4,7 @@
   "author": "Alley M. Carvalho <alleycarvalho@gmail.com>",
   "private": true,
   "dependencies": {
+    "polished": "^3.4.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-icons": "^3.8.0",
