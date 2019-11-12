@@ -1,6 +1,7 @@
 {
   "name": "desafio07",
   "version": "0.1.0",
+  "author": "Alley M. Carvalho <alleycarvalho@gmail.com>",
   "private": true,
   "dependencies": {
     "react": "^16.11.0",
@@ -12,9 +13,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
