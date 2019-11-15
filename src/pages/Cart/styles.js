@@ -93,3 +93,11 @@ export const Total = styled.div`
     margin-left: 5px;
   }
 `;
+
+export const Message = styled.div`
+  padding: 20px;
+  background: #ddd;
+  text-align: center;
+  color: #777;
+  border-radius: 4px;
+`;

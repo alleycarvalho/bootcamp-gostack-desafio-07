@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -11,7 +12,7 @@ import { formatPrice } from '../../util/format';
 
 import * as CartActions from '../../store/modules/cart/actions';
 
-import { Container, ProductTable, Total } from './styles';
+import { Container, ProductTable, Total, Message } from './styles';
 
 function Cart({ cart, total, removeFromCart, updateAmountRequest }) {
   function increment(product) {
@@ -22,69 +23,83 @@ function Cart({ cart, total, removeFromCart, updateAmountRequest }) {
     updateAmountRequest(product.id, product.amount - 1);
   }
 
+  if (cart.length > 0) {
+    return (
+      <Container>
+        <ProductTable>
+          <thead>
+            <tr>
+              <th>IMAGEM</th>
+              <th>PRODUTO</th>
+              <th>QTD</th>
+              <th>SUBTOTAL</th>
+              <th>EXCLUIR</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {cart.map(product => (
+              <tr>
+                <td>
+                  <img src={product.image} alt={product.title} />
+                </td>
+
+                <td>
+                  <strong>{product.title}</strong>
+                  <span>{product.priceFormatted}</span>
+                </td>
+
+                <td>
+                  <div>
+                    <button type="button" onClick={() => decrement(product)}>
+                      <MdRemoveCircleOutline size={20} color="#7159c1" />
+                    </button>
+
+                    <input type="number" readOnly value={product.amount} />
+
+                    <button type="button" onClick={() => increment(product)}>
+                      <MdAddCircleOutline size={20} color="#7159c1" />
+                    </button>
+                  </div>
+                </td>
+
+                <td>
+                  <strong>{product.subtotal}</strong>
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => removeFromCart(product.id)}
+                  >
+                    <MdDelete size={20} color="#7159c1" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </ProductTable>
+
+        <footer>
+          <button type="button">Finalizar pedido</button>
+
+          <Total>
+            <span>TOTAL</span>
+            <strong>{total}</strong>
+          </Total>
+        </footer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      <ProductTable>
-        <thead>
-          <tr>
-            <th>IMAGEM</th>
-            <th>PRODUTO</th>
-            <th>QTD</th>
-            <th>SUBTOTAL</th>
-            <th>EXCLUIR</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {cart.map(product => (
-            <tr>
-              <td>
-                <img src={product.image} alt={product.title} />
-              </td>
-
-              <td>
-                <strong>{product.title}</strong>
-                <span>{product.priceFormatted}</span>
-              </td>
-
-              <td>
-                <div>
-                  <button type="button" onClick={() => decrement(product)}>
-                    <MdRemoveCircleOutline size={20} color="#7159c1" />
-                  </button>
-
-                  <input type="number" readOnly value={product.amount} />
-
-                  <button type="button" onClick={() => increment(product)}>
-                    <MdAddCircleOutline size={20} color="#7159c1" />
-                  </button>
-                </div>
-              </td>
-
-              <td>
-                <strong>{product.subtotal}</strong>
-              </td>
-
-              <td>
-                <button
-                  type="button"
-                  onClick={() => removeFromCart(product.id)}
-                >
-                  <MdDelete size={20} color="#7159c1" />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </ProductTable>
+      <Message>Nenhum produto no Carrinho!</Message>
 
       <footer>
-        <button type="button">Finalizar pedido</button>
-
-        <Total>
-          <span>TOTAL</span>
-          <strong>{total}</strong>
-        </Total>
+        <Link to="/">
+          <button type="button">Voltar</button>
+        </Link>
       </footer>
     </Container>
   );
