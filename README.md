@@ -36,6 +36,7 @@
 - [Redux](https://redux.js.org/), [Redux Saga](https://github.com/redux-saga/redux-saga), [Immer](https://github.com/immerjs/immer) e utilização com [Reactotron](https://github.com/infinitered/reactotron)
 - [History](https://github.com/ReactTraining/history/blob/master/docs/GettingStarted.md)
 - [Toastify](https://github.com/fkhadra/react-toastify)
+- [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
 
 ### Funcionalidades
 
